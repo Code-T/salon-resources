@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>IOS ML</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">机器学习介绍</h1>
+
+<h2 id="toc_1">卷积神经网络</h2>
+
+<p>如下图所示，展示了一个33的卷积核在55的图像上做卷积的过程。每个卷积都是一种特征提取方式，就像一个筛子，将图像中符合条件（激活值越大越符合条件）的部分筛选出来。</p>
+
+<p><img src="https://pic4.zhimg.com/50/v2-7fce29335f9b43bce1b373daa40cccba_hd.gif" alt=""></p>
+
+<p>不同的卷积核能够提取到图像中的不同特征，这里有 <a href="https://graphics.stanford.edu/courses/cs178/applets/convolution.html">在线demo</a></p>
+
+<p><strong>总结：</strong></p>
+
+<p>第一点，在学习Deep learning和CNN之前，总以为它们是很了不得的知识，总以为它们能解决很多问题，学习了之后，才知道它们不过与其他机器学习算法如svm等相似，仍然可以把它当做一个分类器，仍然可以像使用一个黑盒子那样使用它。</p>
+
+<p>第二点，Deep Learning强大的地方就是可以利用网络中间某一层的输出当做是数据的另一种表达，从而可以将其认为是经过网络学习到的特征。基于该特征，可以进行进一步的相似度比较等。</p>
+
+<p>第三点，Deep Learning算法能够有效的关键其实是大规模的数据，这一点原因在于每个DL都有众多的参数，少量数据无法将参数训练充分。</p>
+
+<p><strong>基本分类</strong></p>
+
+<p>监督学习就是标明一些数据是对的，另一些数据是错的，然后让程序预测，新的数据是对的还是错的。所以说，有监督学习，必须是有标签的。</p>
+
+<p>无监督学习，顾名思义，就是不对数据进行标明，让机器自动去判断，哪些数据比较像，归到一类等等。</p>
+
+<p>强化学习或者叫做加强学习，是指什么呢？在前边的监督学习中，机器每次做出预测，都会知道结果对不对，但是在这里却不行，每次做出预测不会得到对或者不对的结果，只会收到看似没有半毛钱关系的反馈。所以强化学习不是依赖数据的标签进行学习，而是依赖自己积累的反馈。强化学习适合学习交互过程，比如下围棋（AlphaGo的成功就是强化学习的力量）。</p>
+
+<h2 id="toc_2">IOS实现</h2>
+
+<p>在WWDC 2017上，苹果首次公布了机器学习方面的动作。iOS系统早已支持Machine Learning 和 Computer Vision ，但这次苹果提供了更合理，容易上手的API，让那些对基础理论知识一窍不通的门外汉也能玩转高大上的前沿科技。</p>
+
+<p>此后，苹果公司宣布了可以在设备上应用机器学习的两种新技术：Core ML和MPS graph API（Core ML 构建于MPS之上，MPS更底层）。</p>
+
+<p><strong>注意：运行demo需要使用Xcode 9和运行iOS 11的设备</strong></p>
+
+<p>iOS10的MPS框架已实现支持GPU的快速CNN计算</p>
+
+<p>支持在iOS设备上运行卷积神经网络（CNN）的API已经加入到了iOS 10的MPS （MetalPerformanceShaders）框架中。我们现在可以利用GPU实现快速的CNN计算，换句话说，最先进的深度学习技术已经可以在单机上离线独立运行。</p>
+
+<p>需要传入MPSCNNConvolutionDataSource对象。该对象负责加载权重。</p>
+
+<p>我们开始写数据输入类。由于我们的层都非常相似，所以我们DataSource将为所有层使用相同的类 - 但是每个层都有自己的实例。代码如下所示：</p>
+
+<div><pre><code class="language-none">class DataSourceCNN: NSObject, MPSCNNConvolutionDataSource {
+    let wName: String
+    let bName: String
+    let kernelWidth: Int
+    let kernelHeight: Int
+    let inputFeatureChannels: Int
+    let outputFeatureChannels: Int
+    let useLeaky: Bool
+    let stride:Int
+    let paramA:Float
+    
+    var wData: Data?
+    var bData: Data?
+    
+    init(_ wName: String, _ bName: String, _ kernelWidth: Int, _ kernelHeight: Int,
+         _ inputFeatureChannels: Int, _ outputFeatureChannels: Int,
+         useLeaky: Bool = true, stride: Int = 1,paramA:Float=0.0) {
+        self.wName = wName
+        self.bName = bName
+        self.kernelWidth = kernelWidth
+        self.kernelHeight = kernelHeight
+        self.inputFeatureChannels = inputFeatureChannels
+        self.outputFeatureChannels = outputFeatureChannels
+        self.useLeaky = useLeaky
+        self.stride=stride
+        self.paramA=paramA
+    }
+    
+    func descriptor() -&gt; MPSCNNConvolutionDescriptor {
+        let desc = MPSCNNConvolutionDescriptor(kernelWidth: kernelWidth,
+                                               kernelHeight: kernelHeight,
+                                               inputFeatureChannels: inputFeatureChannels,
+                                               outputFeatureChannels: outputFeatureChannels)
+        if useLeaky {
+            
+            desc.setNeuronType(.reLU, parameterA: 0.0, parameterB: 0.0)
+            
+        } else {
+            desc.setNeuronType(.none, parameterA: 0.0, parameterB: 0.0)
+        }
+        
+        desc.strideInPixelsX=stride
+        desc.strideInPixelsY=stride
+        
+        
+        return desc
+    }
+    
+    func weights() -&gt; UnsafeMutableRawPointer {
+        let ptr=UnsafeMutableRawPointer(mutating: (wData! as NSData).bytes)
+        return ptr
+    }
+    
+    func biasTerms() -&gt; UnsafeMutablePointer&lt;Float&gt;? {
+        
+        return nil
+    }
+    
+    func load() -&gt; Bool {
+        if let url = Bundle.main.url(forResource: name, withExtension: &quot;bin&quot;) {
+          do {
+            data = try Data(contentsOf: url)
+            return true
+          } catch {
+            print(&quot;Error: could not load \(url): \(error)&quot;)
+          }
+        }
+        return false
+    }
+        
+    func purge() {
+        wData = nil
+        bData=nil
+    }
+    
+    func label() -&gt; String? {
+        return wName
+    }
+    
+    func dataType() -&gt; MPSDataType {
+        return .float32
+    }
+}  </code></pre></div>
+
+<p>该MPSCNNConvolutionDataSource需要具有load()和purge()函数。在这里，我们只需将上一步导出的二进制文件（例如，conv1.bin）加载到Data对象中即可。</p>
+
+<p>要获取此层的权重，该weights()函数将返回一个指向此Data对象的第一个元素的指针。假设我们的层没有偏置，所以biasTerms()可以返回nil.</p>
+
+<p>现在，数据源被整理出来，我们可以开始构建图：</p>
+
+<div><pre><code class="language-none">let inputImage = MPSNNImageNode(handle: nil)
+
+let scale = MPSNNLanczosScaleNode(source: inputImage,
+                 outputSize: MTLSize(width: 416, height: 416, depth: 3))
+
+let conv1 = MPSCNNConvolutionNode(source: scale.resultImage,
+                                  weights: DataSource(&quot;conv1&quot;, 3, 3, 3, 16))
+
+let pool1 = MPSCNNPoolingMaxNode(source: conv1.resultImage, filterSize: 2)
+
+let conv2 = MPSCNNConvolutionNode(source: pool1.resultImage,
+                                  weights: DataSource(&quot;conv2&quot;, 3, 3, 16, 32))
+
+let pool2 = MPSCNNPoolingMaxNode(source: conv2.resultImage, filterSize: 2)
+
+// ... and so on ...
+
+guard let graph = MPSNNGraph(device: device, 
+                             resultImage: conv9.resultImage) else {
+  fatalError(&quot;Error: could not initialize graph&quot;)
+}
+</code></pre></div>
+
+<p>我们首先为输入图像声明一个节点，并将一个将该输入图像缩放到416×416。接下来每个层都使用source参数连接到前一个层。所以scale节点连接到inputImage，conv1被连接到scale.resultImage，等等。graph本身是一个MPSNNGraph对象，并连接到网络中最后一层的输出conv9</p>
+
+<h4 id="toc_3">总结：</h4>
+
+<p>Core ML 大大降低了开发者在苹果设备上使用机器学习技术的门槛。苹果制定了自己的模型格式，这样当前主流机器学习模型通过转换工具都能运用到APP当中。如果你是移动开发者，又看好机器学习，为什么不试一试呢？如果说前几年是智能机时代，有可能未来几年就是智能应用时代了。</p>
+
+<h2 id="toc_4">深度学习图像应用</h2>
+
+<p>我在此不是要说明作者是怎么做到这些的，而是让大家看一些令人难以置信的结果。</p>
+
+<h4 id="toc_5">艺术类</h4>
+
+<p>TYLE2PAINTS：<a href="https://www.oschina.net/p/style2paints">强大的为线稿上色的 AI</a></p>
+
+<p><img src="https://static.oschina.net/uploads/space/2017/0929/145751_c4p2_2896879.png" alt=""></p>
+
+<p>推荐理由：新一代的强大线稿上色 AI，可根据用户上传的自定义色彩给线稿进行上色。项目提供了在线使用网站，十分方便使用。</p>
+
+<p>CycleGAN：<a href="hhttps://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">生成对抗网络图像处理工具</a></p>
+
+<p>这个工具功能十分强大，不仅可将绘画作品“还原”成照片（可理解为是一个 “反滤镜”），还能将夏天转换成冬天，或将普通的马转化成斑马。</p>
+
+<p><img src="https://static.oschina.net/uploads/space/2017/0410/184953_TSZk_2720166.gif" alt=""></p>
+
+<p><a href="https://github.com/OsciiArt/DeepAA">make ASCII Art by Deep Learning</a>
+<img src="https://github.com/OsciiArt/DeepAA/raw/master/sample%20images/images%20generated%20with%20CNN/21%20generated.png" alt=""></p>
+
+<h4 id="toc_6">识别类</h4>
+
+<p><a href="https://github.com/matterport/Mask_RCNN">maskrcnn</a>
+<img src="https://github.com/matterport/Mask_RCNN/raw/master/assets/detection_final.png" alt=""></p>
+
+<p><strong>使用迁移学习做动物脸部识别</strong></p>
+
+<p>牛其实不愿意看到人类的，他们会视人类为捕食者，因此养牛场的工作人员会给牛群带来紧张情绪。那么我们就把农场的管理交给人工智能吧。</p>
+
+<p>人工智能通过农场的摄像装置获得牛脸以及身体状况的照片，进而通过深度学习对牛的情绪和健康状况进行分析，然后帮助农场主判断出那些牛生病了，生了什么病，那些牛没有吃饱，甚至那些牛到了发情期。除了摄像装置对牛进行“牛脸”识别，还可以配合上可穿戴的智能设备，这会让农场主更好的管理农场。这些数据上传到云服务器上，用自己开发的算法通过机器学习让这些海量的原始数据变成直观的图表和信息发送到客户那里。这些信息包括奶牛的健康分析、发情期探测和预测、喂养状况、位置服务等。</p>
+
+<p><img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1782068653,1356388876&amp;fm=173&amp;s=CCB11DD7583B0592CEAD2CB303005002&amp;w=640&amp;h=363&amp;img.JPEG" alt=""></p>
+
+<h4 id="toc_7">图像增强类</h4>
+
+<p><a href="ttps://github.com/KupynOrest/DeblurGAN">DeblurGAN</a></p>
+
+<p><img src="https://github.com/KupynOrest/DeblurGAN/raw/master/images/animation3.gif" alt=""></p>
+
+<p><strong>图像超分辨率</strong></p>
+
+<p>RAISR 这项技术能利用机器学习，把低分辨率图片转为高分辨率图片。它的效果能达到甚至超过现在的超分辨率解决方案，同时速度提升大约 10 至 100 倍，且能够在普通的移动设备上运行。
+<img src="http://img.mp.itc.cn/upload/20161116/23280379fc1344798a8ab25ae9ce7fc8_th.jpeg" alt=""></p>
+
+<p><strong>Face2Face：扮演特朗普</strong></p>
+
+<p>斯坦福大学的一个小组做了一款名为Face2Face的应用，这套系统能够利用人脸捕捉，让你在视频里实时扮演另一个人，简单来讲，就是可以把你的面部表情实时移植到视频里正在发表演讲的美国总统身上。
+<img src="https://pic4.zhimg.com/50/v2-52d5fddee106325a31533edaea3ea8e6_hd.jpg" alt=""></p>
+
+<h2 id="toc_8">增强学习</h2>
+
+<p><a href="https://zhuanlan.zhihu.com/p/24993914">MIT最新课程 ——九小时速成深度学习&amp;自动驾驶汽车
+</a></p>
+
+<p><strong>a minitaur duck</strong>
+<img src="https://camo.githubusercontent.com/2e09ab564bc1c25f450d906fc5e53c7bd57d173c/68747470733a2f2f63646e2e7261776769742e636f6d2f686172646d6172752f707962756c6c65745f616e696d6174696f6e732f38613663636166352f616e696d2f6d696e69746175722f6475636b5f6e6f726d616c5f736d616c6c2e676966" alt=""></p>
+
+<p>OpenAI，所训练的一款人工智能算法在著名的电子竞技游戏Dota2国际邀请赛The International中，参与了1V1比赛环节，并压倒性的击败了顶级电子竞技选手Dendi。</p>
+
+<p><img src="http://cms-bucket.nosdn.127.net/catchpic/3/3b/3b01a71d46e7f14cbc80fd587cc75ed6.jpg?imageView&amp;thumbnail=550x0" alt=""></p>
+
+<p><strong>反复攻破和修补自己的防火墙</strong></p>
+
+<p><img src="https://pic3.zhimg.com/50/v2-5b8b67e3d4a107ac0dde6dd324e08fa8_hd.jpg" alt=""></p>
+
+<p>Google大脑的研究团队创建了两个深度学习网络用于安全工具开发，他们让其中一个不断创造自己的加密算法，然后让另一个网络去尽力攻破它。在两套系统的反复缠斗后，第一个系统已经能生成非常优秀的安全加密算法。</p>
+
+<p><strong>AI可以自己编程</strong></p>
+
+<p>DeepCoder使用了一种叫做程序合成(program synthesis)的技术，其运行原理与程序员所做的事情差不多，就是从存在的软件中获取已知的代码段，并将它们拼接到一起执行新的程序。只要赋予DeepCoder中每个片段对应的输入和输出，程序就可以“学习”到哪些代码是我们所需要的。</p>
+
+<p><img src="http://upload.chinaz.com/2017/0411/6362750578285856502540812.jpeg" alt=""></p>
+
+<h2 id="toc_9">深度学习局限性</h2>
+
+<p>如果问题不能纯粹地转化为一个映射问题时，深度学习的执行力就存在局限性。(由于深度学习更专注于一些基于数据驱动的映射问题，而事实上无论在视觉领域还是在人工智能领域，很多问题并不是映射问题。)</p>
+
+<p>比如，深度学习解决问题时，是通过构建神经网络架构实现的，这一过程过度依赖样本。同时，我们又不清楚深度学习具体如何解决问题、如何解释解决问题的过程。因此，深度学习有一些和统计学习方法相同的顽疾：容易被一些方法陷害，比如灌入脏数据。从而使得深度学习做得不好。</p>
+
+<p>例如，做一个巡逻机器人放在小区里。开始时，业主和物业觉得这个巡逻机器人有趣，但后来觉得它没用，不能解决他们的问题。他们就想这东西能干什么，然后提出了一个痛点需求:小区里面猫屎、狗屎，如果没有被及时清理，影响环境且容易被踩到。机器人能不能通过巡逻，找到狗屎，反馈给物业，让保洁快速清理掉？</p>
+
+<p>以这样一个问题为例，如果我们用传统的非深度学习的方法去做的话，可能要搜集几百、几千张狗屎的照片，然后人工地去搜集它的颜色、形状、以及纹理特征，然后去调节分类器。我们过去做人脸检测、行人检测，车辆检测都是这么做的，可能需要十几年的时间才调出来一个还不错的模型。但是深度学习模型一两个月就可以解决这个问题：我们先用平台去收集上万张狗屎的照片，也许我们再花上一两个星期的时间，调调模型然后交给机器去训练就好了，大概一两个月也许就可以部署这样一个系统。</p>
+
+<p>对于大数据来说这够了，但和人相比还是不够。如果一个小孩踩了一次狗屎，基本上就不会踩第二次，也就意味着他基本上用一个样本，几秒钟的时间就学完了狗屎检测的问题。</p>
+
+<p><strong>深度学习缺乏常识</strong></p>
+
+<p>比如说杯子不会悬在空中，它一定是在桌面上；狗屎一般不会在墙上，因为狗一般不会跑到墙上去拉屎，这些“常识”使得人在不需要很多样本的情况下，很精准的解决问题。比如行人检测，人不会去树上做检测，那很奇怪。因为人知道，行人一般不会在树上。比如汽车检测，人不会在天上做汽车检测。因为人知道，天上不会飞汽车。人其实都有“常识”，它使得人并不需要很多样本，就可以做很准确的判断。</p>
+
+<p><strong>深度学习需要大量数据</strong></p>
+
+<p>自动驾驶其实大家知道，真正测试一个自动驾驶系统的行为，不是靠这些normal traffic（常规交通），而是靠什么呢？靠很多边界的case，靠很多不正常的traffic data，比如小孩子突然走到马路，你可能一辈子很难碰到几个，但是你就是要拿这些情况去测试。但是你不可能用真实的数据，你不可能让小孩真的去横闯马路，然后去测试你这个自动驾驶的系统，所以一定是用仿真的系统，去产生的很多的这种配制，然后去训练去测试。这个是自动驾驶必须要走的路，那这个里面实际上就是用大量的数据，但是这个数据是举一反三虚拟想象出来的。所以未来的话，有可能想象的数据会填补我们对数据的缺失所带来的掣肘，然后使你实际上effectively（有效的）是用小数据，但是你从generate很多大量的数据，使得你这个系统能够不断的进化，去变得越来越聪明。</p>
+
+<p><strong>强化学习反馈时延很久</strong></p>
+
+<p>Alphago zero，你会发现它其实一定意义上来讲没有数据，因为它是完全从零的状态开始博弈，它完全是左右博弈，去虚拟下无数盘棋。整个这个程序是用的深度学习加强化学习，在不断的从虚拟的对决里面去学习很多的经验，最后达到一个很强大的能力，会接近棋盘真理。zero data learning，它是没有用任何人类历史的棋盘对决的数据，但是它又是大数据，为什么呢？因为它用很多虚拟的数据来学习，所以就是说，你就发现想象力使你在zero data learning和data learning之间好像有个虫洞效应。实际上它们两个之间距离是非常短的，不是我们想象的差别那么大。</p>
+
+<p><strong>注：本文内容部分整理于他人文章，仅用于分享知识，探讨相关概念。且限于本人水平，文中可能存在一定错误或则不全面之处，欢迎探讨指正。文中大量连接都是很不错的资源，有兴趣者可以深入研究。</strong></p>
+
+
+
+
+</body>
+
+</html>
